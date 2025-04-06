@@ -30,7 +30,7 @@
   <div class="flex h-full flex-col items-center justify-center gap-2">
     {#each Object.entries(times) as [direction, timeList]}
       <div class="flex flex-row items-center gap-2">
-        <p class="text-lg text-white">{direction}</p>
+        <p class="text-lg text-foreground">{direction}</p>
         {#each timeList.slice(0, 2) as time}
           <div class="flex items-center gap-2 rounded-sm bg-accent px-2">
             {#if time.eta < 60}
@@ -40,10 +40,12 @@
                 <Clock class="h-3 w-auto text-foreground" />
               {/if}
               {#if time.eta > 1}
-                <p class="text-lg {time.realtime ? 'text-[#02B76A]' : 'text-foreground'}">{time.eta}</p>
+                <p class="text-lg {time.realtime ? 'text-[#059759] dark:text-[#02B76A]' : 'text-foreground'}">{time.eta}</p>
                 <p class="mt-1 text-sm text-muted-foreground">min</p>
               {:else}
-                <p class="my-1 text-sm {time.realtime ? 'text-[#02B76A]' : 'text-foreground'}">En approche</p>
+                <p class="my-1 text-sm {time.realtime ? 'text-[#059759] dark:text-[#02B76A]' : 'text-foreground'}">
+                  En approche
+                </p>
               {/if}
             {:else}
               <p class="text-lg text-muted-foreground">{time.eta_hour}</p>
@@ -54,8 +56,8 @@
     {/each}
     {#if Object.keys(times).length === 0}
       <div class="flex flex-col items-center">
-        <p class="mx-2 text-center text-[12px] text-white">Hors Service</p>
-        <p class="mx-2 text-center text-[12px] text-white">Commercial</p>
+        <p class="mx-2 text-center text-[12px] text-foreground">Hors Service</p>
+        <p class="mx-2 text-center text-[12px] text-foreground">Commercial</p>
       </div>
     {/if}
   </div>

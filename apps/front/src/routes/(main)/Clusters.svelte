@@ -3,10 +3,10 @@
   import { onMount } from 'svelte';
 
   let clusters: Record<string, { current: number; max: number; color: string }> = {
-    c1: { current: 0, max: 48, color: '#66F6FF' },
-    c2: { current: 0, max: 72, color: '#02B76A' },
-    c3: { current: 0, max: 12, color: '#FF6666' },
-    c4: { current: 0, max: 12, color: '#FFE766' }
+    c1: { current: 0, max: 48, color: 'text-[#2aabb3] dark:text-[#66F6FF]' },
+    c2: { current: 0, max: 72, color: 'text-[#059759] dark:text-[#02B76A]' },
+    c3: { current: 0, max: 12, color: 'text-[#d44545] dark:text-[#FF6666]' },
+    c4: { current: 0, max: 12, color: 'text-[#f89c2a] dark:text-[#FFE766]' }
   };
 
   async function fetchClusters() {
@@ -39,8 +39,8 @@
   <div class="flex w-full flex-col gap-4">
     {#each Object.entries(clusters) as [key, cluster]}
       <div class="my-auto flex items-center justify-center gap-x-3">
-        <p class="text-4xl" style="color: {cluster.color}">{key}</p>
-        <div class="text-4xl text-white">
+        <p class="text-4xl {cluster.color}">{key}</p>
+        <div class="text-4xl text-foreground">
           <span class="font-bold">{cluster.current.toString().padStart(2, '0')}</span>
           <span class="text-muted-foreground">/</span>
           <span class="font-bold">{cluster.max}</span>

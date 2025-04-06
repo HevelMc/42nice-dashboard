@@ -2,7 +2,14 @@
   import Sidebar from './Sidebar.svelte';
   import Header from './Header.svelte';
   import Carousel from './Carousel.svelte';
+  import { toggleMode } from 'mode-watcher';
 </script>
+
+<svelte:window
+  onkeydown={(e) => {
+    if (e.key === 'd') toggleMode();
+  }}
+/>
 
 <div class="flex h-screen flex-col bg-background">
   <Header />

@@ -3,6 +3,8 @@ import tailwindAnimate from 'tailwindcss-animate';
 import type { Config } from 'tailwindcss';
 
 export default {
+  darkMode: 'class',
+
   content: ['./src/**/*.{html,js,svelte,ts}', 'node_modules/hevel-ui/**/*.{html,js,svelte,ts}'],
 
   theme: {
@@ -69,8 +71,8 @@ export default {
         sm: 'calc(var(--radius) - 4px)'
       },
       fontFamily: {
-        sans: ['Roboto', 'sans-serif'],
-      },
+        sans: ['Roboto', 'sans-serif']
+      }
     }
   },
 
