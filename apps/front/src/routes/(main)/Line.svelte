@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import { Clock } from 'lucide-svelte';
+
   export interface Line {
     number: string;
     transportMode: string;
@@ -39,13 +41,17 @@
         <p class="text-[12px] text-white">{formatName(direction)}</p>
         {#each timeList.slice(0, 2) as time}
           <div class="flex items-center gap-1 rounded-sm bg-accent px-1">
-            {#if time.realtime}
-              <img src="/rt.gif" alt="real_time" class="h-3 w-auto" />
-              {#if time.eta > 1}
-                <p class="text-[12px] text-[#02B76A]">{time.eta}</p>
-                <p class="mt-1 text-[8px] text-muted-foreground">min</p>
+            {#if time.eta < 60}
+              {#if time.realtime}
+                <img src="/rt.gif" alt="real_time" class="h-3 w-auto" />
               {:else}
-                <p class="my-0.5 text-[10px] text-[#02B76A]">En approche</p>
+                <Clock class="h-3 w-auto text-foreground" />
+              {/if}
+              {#if time.eta > 1}
+                <p class="text-[12px] {time.realtime ? 'text-[#02B76A]' : 'text-foreground'}">{time.eta}</p>
+                <p class="mt-0.5 text-[8px] text-muted-foreground">min</p>
+              {:else}
+                <p class="my-0.5 text-[10px] {time.realtime ? 'text-[#02B76A]' : 'text-foreground'}">En approche</p>
               {/if}
             {:else}
               <p class="text-[12px] text-muted-foreground">{time.eta_hour}</p>
