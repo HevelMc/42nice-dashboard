@@ -17,14 +17,6 @@
 </script>
 
 <script lang="ts">
-  function formatName(name: string): string {
-    if (name.includes('Saint-Isidore')) return 'St-Isidore';
-    if (name.includes('Port Lympia')) return 'Port Lympia';
-    if (name.includes('STAPS')) return 'STAPS';
-    if (name.includes('CADAM')) return 'CADAM';
-    return name;
-  }
-
   let { number, transportMode, color, times }: Line = $props();
 </script>
 
@@ -38,7 +30,7 @@
   <div class="flex h-full flex-col items-center justify-center gap-2">
     {#each Object.entries(times) as [direction, timeList]}
       <div class="flex flex-row items-center gap-2">
-        <p class="text-[12px] text-white">{formatName(direction)}</p>
+        <p class="text-[12px] text-white">{direction}</p>
         {#each timeList.slice(0, 2) as time}
           <div class="flex items-center gap-1 rounded-sm bg-accent px-1">
             {#if time.eta < 60}

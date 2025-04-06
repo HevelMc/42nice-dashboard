@@ -29,7 +29,7 @@ export default class LinesController {
           .flat()
 
         const groupedTimes = times.reduce((acc: any, time: any) => {
-          const destination = time.destination.name
+          const destination = _formatLineNames(time.destination.name)
           if (!acc[destination]) {
             acc[destination] = []
           }
@@ -55,4 +55,12 @@ export default class LinesController {
 
     return response.json(groupedLines)
   }
+}
+
+function _formatLineNames(name: string): string {
+  if (name.includes('Saint-Isidore')) return 'St-Isidore'
+  if (name.includes('Port Lympia')) return 'Port Lympia'
+  if (name.includes('STAPS')) return 'STAPS'
+  if (name.includes('CADAM')) return 'CADAM'
+  return name
 }
