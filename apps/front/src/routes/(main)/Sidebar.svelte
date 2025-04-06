@@ -3,7 +3,8 @@
   import Lines from './Lines.svelte';
 </script>
 
-<div class="flex h-full w-60 shrink-0 flex-col gap-8 border-r border-border">
+<div class="flex h-full w-[21rem] shrink-0 flex-col justify-around border-r border-border">
   <Clusters />
+  <div class="w-full border-b border-border"></div>
   <Lines />
 </div>

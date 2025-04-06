@@ -22,17 +22,17 @@
 
 <div class="my-2 flex h-full min-h-[60px] flex-col items-center gap-4">
   <div class="flex rounded-full p-[3px]" style="background-color: #{color}">
-    <img src={`/${transportMode}.svg`} alt="icon" class="mx-[4px] my-[2px] h-[18px] w-[18px]" />
-    <div class="ml-1 flex items-center rounded-full bg-white">
-      <p class="mx-2 text-[12px] text-black">{number}</p>
+    <img src={`/${transportMode}.svg`} alt="icon" class="mx-2 my-1 h-6 w-6" />
+    <div class="flex items-center rounded-full bg-white">
+      <p class="mx-2 text-lg text-black">{number}</p>
     </div>
   </div>
   <div class="flex h-full flex-col items-center justify-center gap-2">
     {#each Object.entries(times) as [direction, timeList]}
       <div class="flex flex-row items-center gap-2">
-        <p class="text-[12px] text-white">{direction}</p>
+        <p class="text-lg text-white">{direction}</p>
         {#each timeList.slice(0, 2) as time}
-          <div class="flex items-center gap-1 rounded-sm bg-accent px-1">
+          <div class="flex items-center gap-2 rounded-sm bg-accent px-2">
             {#if time.eta < 60}
               {#if time.realtime}
                 <img src="/rt.gif" alt="real_time" class="h-3 w-auto" />
@@ -40,13 +40,13 @@
                 <Clock class="h-3 w-auto text-foreground" />
               {/if}
               {#if time.eta > 1}
-                <p class="text-[12px] {time.realtime ? 'text-[#02B76A]' : 'text-foreground'}">{time.eta}</p>
-                <p class="mt-0.5 text-[8px] text-muted-foreground">min</p>
+                <p class="text-lg {time.realtime ? 'text-[#02B76A]' : 'text-foreground'}">{time.eta}</p>
+                <p class="mt-1 text-sm text-muted-foreground">min</p>
               {:else}
-                <p class="my-0.5 text-[10px] {time.realtime ? 'text-[#02B76A]' : 'text-foreground'}">En approche</p>
+                <p class="my-1 text-sm {time.realtime ? 'text-[#02B76A]' : 'text-foreground'}">En approche</p>
               {/if}
             {:else}
-              <p class="text-[12px] text-muted-foreground">{time.eta_hour}</p>
+              <p class="text-lg text-muted-foreground">{time.eta_hour}</p>
             {/if}
           </div>
         {/each}

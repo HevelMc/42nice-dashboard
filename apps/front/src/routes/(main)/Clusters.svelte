@@ -33,14 +33,14 @@
   });
 </script>
 
-<div class="flex w-full flex-col items-center gap-4 border-b border-border py-8">
-  <h1 class="text-2xl font-bold">Clusters</h1>
+<div class="flex w-full flex-col items-center gap-4 py-8">
+  <h1 class="text-3xl font-bold">Clusters</h1>
 
-  <div class="flex w-full flex-col gap-2">
+  <div class="flex w-full flex-col gap-4">
     {#each Object.entries(clusters) as [key, cluster]}
-      <div class="font my-auto flex items-center justify-center gap-x-3">
-        <p class="text-2xl" style="color: {cluster.color}">{key}</p>
-        <div class="text-2xl text-white">
+      <div class="my-auto flex items-center justify-center gap-x-3">
+        <p class="text-4xl" style="color: {cluster.color}">{key}</p>
+        <div class="text-4xl text-white">
           <span class="font-bold">{cluster.current.toString().padStart(2, '0')}</span>
           <span class="text-muted-foreground">/</span>
           <span class="font-bold">{cluster.max}</span>
