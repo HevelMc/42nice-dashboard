@@ -27,9 +27,16 @@
   onMount(() => {
     fetchClusters();
 
-    setInterval(() => {
-      fetchClusters();
-    }, 1000 * 60);
+    let interval: NodeJS.Timeout;
+
+    interval = setInterval(
+      () => {
+        fetchClusters();
+      },
+      1000 * 60 * 10
+    );
+
+    return () => clearInterval(interval);
   });
 </script>
 

@@ -32,7 +32,7 @@
   <Carousel.Root
     plugins={[
       Autoplay({
-        delay: 5000
+        delay: 10000
       })
     ]}
     setApi={(emblaApi) => (api = emblaApi)}

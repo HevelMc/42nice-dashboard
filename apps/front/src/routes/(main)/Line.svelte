@@ -20,7 +20,7 @@
   let { number, transportMode, color, times }: Line = $props();
 </script>
 
-<div class="my-2 flex h-full min-h-[60px] flex-col items-center gap-4">
+<div class="my-2 flex h-full flex-col items-center gap-4">
   <div class="flex rounded-full p-[3px]" style="background-color: #{color}">
     <img src={`/${transportMode}.svg`} alt="icon" class="mx-2 my-1 h-6 w-6" />
     <div class="flex items-center rounded-full bg-white">
@@ -56,8 +56,8 @@
     {/each}
     {#if Object.keys(times).length === 0}
       <div class="flex flex-col items-center">
-        <p class="mx-2 text-center text-[12px] text-foreground">Hors Service</p>
-        <p class="mx-2 text-center text-[12px] text-foreground">Commercial</p>
+        <p class="mx-2 text-center text-lg text-foreground">Hors Service</p>
+        <p class="mx-2 text-center text-lg text-foreground">Commercial</p>
       </div>
     {/if}
   </div>

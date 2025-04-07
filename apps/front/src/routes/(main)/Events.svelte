@@ -10,9 +10,16 @@
   onMount(() => {
     setTimeout(() => {
       fetchEvents();
-      setInterval(() => {
-        fetchEvents();
-      }, 1000 * 60);
+      let interval: NodeJS.Timeout;
+
+      interval = setInterval(
+        () => {
+          fetchEvents();
+        },
+        1000 * 60 * 30
+      );
+
+      return () => clearInterval(interval);
     }, 2000);
   });
 
@@ -31,7 +38,7 @@
 
 {#snippet Column(type: string, events: any[])}
   <div class="flex h-full flex-col items-center">
-    <p class="mb-4 text-[30px] font-bold text-foreground">
+    <p class="mb-4 text-[30px] font-black text-foreground">
       {#if type === 'event'}
         UPCOMING EVENTS
       {:else}
