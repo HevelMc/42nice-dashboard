@@ -22,8 +22,6 @@
       .then((res) => {
         events = res.data.filter((event: any) => event.type !== 'exam');
         exams = res.data.filter((event: any) => event.type === 'exam');
-        console.log(events);
-        console.log(exams);
       })
       .catch((err) => {
         console.error(err);

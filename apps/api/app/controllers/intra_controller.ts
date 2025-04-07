@@ -73,8 +73,6 @@ export default class IntraController {
 
     exams.data.forEach((exam: any) => (exam.kind = 'exam'))
 
-    console.log(events.data)
-
     return response.json(
       [...events.data, ...exams.data].map((event: any) => {
         const begin = new Date(event.begin_at)

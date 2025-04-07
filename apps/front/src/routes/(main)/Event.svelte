@@ -21,7 +21,7 @@
   let beginDate = $derived(new Date(begin));
   let date_day: string = $derived(beginDate.toLocaleString('en-US', { weekday: 'short' }) + ' ' + beginDate.getDate());
   let date_month: string = $derived(beginDate.toLocaleString('en-US', { month: 'long' }));
-  let date_time: string = $derived(beginDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric' }));
+  let date_time: string = $derived(beginDate.toLocaleString('fr-US', { hour: 'numeric', minute: 'numeric' }));
 
   function getColor(type: string) {
     if (type === 'association') return '#a2b3e5';
@@ -39,7 +39,7 @@
     <p class="my-auto mt-3 text-[16px] text-black">{date_time}</p>
   </div>
   <div class="relative flex flex-grow flex-col">
-    <div class="grid grid-cols-3 p-1">
+    <div class="grid grid-cols-4 p-1">
       <p class="mx-1 my-auto truncate text-[14px] font-bold" style="color: {color}">
         {type?.capitalize()}
       </p>
@@ -47,7 +47,7 @@
         <Clock class="h-4 w-4 shrink-0" style="color: {color}" />
         <p class="my-auto truncate text-[14px]" style="color: {color}">{duration / 60} hours</p>
       </div>
-      <div class="mx-1 flex items-center gap-1">
+      <div class="col-span-2 mx-1 flex items-center gap-1">
         <MapPin class="h-4 w-4 shrink-0" style="color: {color}" />
         <p class="my-auto truncate text-[14px]" style="color: {color}">{location}</p>
       </div>
