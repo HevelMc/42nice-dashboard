@@ -18,3 +18,7 @@ export function localStorageStore<T>(key: string, initialValue: T): Writable<T> 
 
   return store;
 }
+
+export function emailValid(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}

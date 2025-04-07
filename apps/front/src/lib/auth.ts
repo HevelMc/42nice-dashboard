@@ -12,10 +12,9 @@ export const auth: Writable<Auth | null> = localStorageStore('auth', null);
 export const login = async (email: string, password: string) => {
   await api.post('/users/login', { email, password }).then(async (res) => {
     auth.set(res.data);
-    window.location.href = '/';
+    window.location.href = '/admin';
   });
 };
-
 
 export const logout = async () => {
   auth.set(null);
