@@ -15,12 +15,16 @@
 </script>
 
 <script lang="ts">
+  import { mode } from 'mode-watcher';
+
   const { coalition }: { coalition: CoalitionItem } = $props();
+
+  const backdrop = $derived($mode === 'dark' ? 'rgba(0,0,0,.6)' : 'rgba(0,0,0,.1)');
 </script>
 
 <div
-  class="my-auto h-fit w-[360px] rounded-lg bg-cover pb-8 pt-4 shadow-xl"
-  style="background-image: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url('{coalition.bg}')"
+  class="my-auto h-fit w-[360px] rounded-xl bg-cover pb-8 pt-4 shadow-xl"
+  style="background-image: linear-gradient({backdrop}, {backdrop}), url('{coalition.bg}')"
 >
   <img src={'/' + coalition.medal} alt="medal" class="mx-auto my-5 h-auto w-[60px]" />
   <img src={coalition.logo} alt="logo" class="mx-auto h-auto w-[160px]" />
