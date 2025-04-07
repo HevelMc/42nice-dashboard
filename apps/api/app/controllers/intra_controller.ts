@@ -91,4 +91,66 @@ export default class IntraController {
       })
     )
   }
+
+  public async coalitions({ response }: HttpContext) {
+    const token = await IntraService.getAccessToken().catch(() => null)
+
+    if (!token) {
+      return response.status(500).json({ error: 'Could not get access token' })
+    }
+
+    const coalitionsRes = await axios.get(`https://api.intra.42.fr/v2/blocs/37`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+
+    if (!coalitionsRes.data) {
+      return response.status(500).json({ error: 'Could not get coalitions' })
+    }
+
+    const coalitions: any[] = coalitionsRes.data.coalitions
+
+    const userIds: { coalitionId: number; userId: number }[] = []
+
+    for (const coalition of coalitions) {
+      const response = await axios.get(
+        `https://api.intra.42.fr/v2/coalitions/${coalition.id}/coalitions_users?sort=-this_year_score&page[size]=1`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      userIds.push({ coalitionId: coalition.id, userId: response.data[0]?.user_id })
+      await new Promise((resolve) => setTimeout(resolve, 1000)) // Wait for 1 second to avoid rate limit
+    }
+
+    const usersRes = await axios.get(
+      `https://api.intra.42.fr/v2/users?filter[id]=${userIds.map((id) => id.userId).join(',')}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+
+    return response.json(
+      coalitions.map((coalition: any) => {
+        let topUser = usersRes.data.find(
+          (user: any) => user.id === userIds.find((id) => id.coalitionId === coalition.id)?.userId
+        )
+
+        return {
+          id: coalition.id,
+          name: coalition.name,
+          score: coalition.score,
+          bg: coalition.cover_url,
+          color: coalition.color,
+          medal: coalition.medal,
+          logo: coalition.image_url,
+          topUser: topUser
+            ? {
+                login: topUser.login,
+                image_url: topUser.image.versions.medium,
+              }
+            : null,
+        }
+      })
+    )
+  }
 }

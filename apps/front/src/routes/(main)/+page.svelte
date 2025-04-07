@@ -4,6 +4,7 @@
   import Carousel from './Carousel.svelte';
   import { toggleMode } from 'mode-watcher';
   import Events from './Events.svelte';
+  import Coalitions from './Coalitions.svelte';
 </script>
 
 <svelte:window
@@ -17,7 +18,7 @@
   <div class="flex h-full w-full">
     <Sidebar />
     <div class="flex h-full w-full flex-col gap-4">
-      <Carousel items={[Events]} />
+      <Carousel items={[Events, Coalitions]} />
     </div>
   </div>
 </div>
