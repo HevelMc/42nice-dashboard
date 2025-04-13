@@ -3,7 +3,7 @@ import { BadgeCheckIcon, CodeIcon, UserRoundIcon } from 'lucide-svelte';
 export interface User {
   id: number;
   email: string;
-  fullName: string;
+  login: string;
   role: string;
   createdAt: string;
   updatedAt: string;

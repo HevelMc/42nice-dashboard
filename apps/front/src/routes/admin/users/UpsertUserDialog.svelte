@@ -14,9 +14,9 @@
 
   let { open = $bindable(false), id, update }: Props = $props();
 
-  let user: { id: number | undefined; fullName: string; email: string; password: string; role: string | undefined } = $state({
+  let user: { id: number | undefined; login: string; email: string; password: string; role: string | undefined } = $state({
     id: undefined,
-    fullName: '',
+    login: '',
     email: '',
     password: '',
     role: undefined
@@ -45,8 +45,8 @@
 
   <div class="flex flex-col gap-4">
     <div class="flex flex-col gap-2">
-      <Label>Full name</Label>
-      <Input bind:value={() => user?.fullName, (value) => (user.fullName = value)} />
+      <Label>Login</Label>
+      <Input bind:value={() => user?.login, (value) => (user.login = value)} />
     </div>
 
     <div class="flex flex-col gap-2">
@@ -87,6 +87,6 @@
       </Select.Root>
     </div>
 
-    <Button onclick={save} disabled={!user.fullName || !isEmailValid(user.email) || !user.role}>Save</Button>
+    <Button onclick={save} disabled={!user.login || !isEmailValid(user.email) || !user.role}>Save</Button>
   </div>
 </Dialog.Content>

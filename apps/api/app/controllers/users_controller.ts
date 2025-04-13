@@ -4,7 +4,7 @@ import { paginatedTableQuery } from '#config/utils'
 
 export default class UsersController {
   public async index({ request }: HttpContext) {
-    return paginatedTableQuery(User.query(), request, ['fullName', 'email'])
+    return paginatedTableQuery(User.query(), request, ['login', 'email'])
   }
 
   public async show({ request, response }: HttpContext) {
@@ -17,7 +17,7 @@ export default class UsersController {
     if (auth.user?.role !== 'dev' && auth.user?.role !== 'staff') {
       return response.status(403).json({ message: 'Unauthorized' })
     }
-    const payload = request.only(['email', 'password', 'fullName', 'role'])
+    const payload = request.only(['email', 'password', 'login', 'role'])
     if (await User.findBy('email', payload.email)) {
       return response.status(400).json({ message: 'User already exists' })
     }
@@ -30,7 +30,7 @@ export default class UsersController {
       return response.status(403).json({ message: 'Unauthorized' })
     }
     const id = request.param('id')
-    const payload = request.only(['email', 'password', 'fullName', 'role'])
+    const payload = request.only(['email', 'password', 'login', 'role'])
     const user = await User.findOrFail(id)
     await user.merge(payload).save()
     return response.json(user)

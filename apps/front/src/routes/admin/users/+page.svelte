@@ -11,9 +11,9 @@
 
   const columns: ColumnDef<User>[] = [
     {
-      accessorKey: 'fullName',
-      meta: { name: 'Full name' },
-      cell: ({ row }) => row.original.fullName
+      accessorKey: 'login',
+      meta: { name: 'Login' },
+      cell: ({ row }) => row.original.login
     },
     {
       accessorKey: 'email',

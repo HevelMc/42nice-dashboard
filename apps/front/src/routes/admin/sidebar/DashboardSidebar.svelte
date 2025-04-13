@@ -52,7 +52,7 @@
               >
                 <Ellipsis />
                 <span>
-                  {$auth!.user.fullName}
+                  {$auth!.user.login}
                 </span>
                 <ChevronUp class="ml-auto" />
               </Sidebar.MenuButton>
