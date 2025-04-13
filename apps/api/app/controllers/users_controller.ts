@@ -1,10 +1,10 @@
 import User from '#models/user'
 import type { HttpContext } from '@adonisjs/core/http'
+import { paginatedTableQuery } from '#config/utils'
 
 export default class UsersController {
-  public async index({ response }: HttpContext) {
-    const users = await User.all()
-    return response.json(users)
+  public async index({ request }: HttpContext) {
+    return paginatedTableQuery(User.query(), request, ['fullName', 'email'])
   }
 
   public async show({ request, response }: HttpContext) {
@@ -13,8 +13,11 @@ export default class UsersController {
     return response.json(user)
   }
 
-  public async store({ request, response }: HttpContext) {
-    const payload = request.only(['email', 'password', 'fullName'])
+  public async store({ auth, request, response }: HttpContext) {
+    if (auth.user?.role !== 'dev' && auth.user?.role !== 'staff') {
+      return response.status(403).json({ message: 'Unauthorized' })
+    }
+    const payload = request.only(['email', 'password', 'fullName', 'role'])
     if (await User.findBy('email', payload.email)) {
       return response.status(400).json({ message: 'User already exists' })
     }
@@ -22,15 +25,21 @@ export default class UsersController {
     return response.json(user)
   }
 
-  public async update({ request, response }: HttpContext) {
+  public async update({ auth, request, response }: HttpContext) {
+    if (auth.user?.role !== 'dev' && auth.user?.role !== 'staff') {
+      return response.status(403).json({ message: 'Unauthorized' })
+    }
     const id = request.param('id')
-    const payload = request.only(['email', 'password', 'fullName'])
+    const payload = request.only(['email', 'password', 'fullName', 'role'])
     const user = await User.findOrFail(id)
     await user.merge(payload).save()
     return response.json(user)
   }
 
-  public async destroy({ request, response }: HttpContext) {
+  public async destroy({ auth, request, response }: HttpContext) {
+    if (auth.user?.role !== 'dev' && auth.user?.role !== 'staff') {
+      return response.status(403).json({ message: 'Unauthorized' })
+    }
     const id = request.param('id')
     const user = await User.findOrFail(id)
     await user?.delete()

@@ -3,6 +3,7 @@
   import { Ellipsis, ChevronUp } from 'lucide-svelte';
   import { contentFooterItems, contentItems } from './sidebarData';
   import { auth } from '$lib/auth';
+  import { page } from '$app/state';
 </script>
 
 <Sidebar.Root>
@@ -18,7 +19,11 @@
         <Sidebar.Menu>
           {#each contentItems as item (item.title)}
             <Sidebar.MenuItem>
-              <Sidebar.MenuButton class="h-10 p-3 text-base">
+              <Sidebar.MenuButton
+                class="h-10 p-3 text-base"
+                aria-disabled={item.disabled}
+                isActive={item.url === page.url.pathname}
+              >
                 {#snippet child({ props })}
                   <a href={item.url} class="flex items-center gap-2" {...props}>
                     {#if item.icon}
@@ -57,7 +62,7 @@
             <Sidebar.Menu>
               {#each contentFooterItems as item (item.title)}
                 <Sidebar.MenuItem>
-                  <Sidebar.MenuButton>
+                  <Sidebar.MenuButton aria-disabled={item.disabled}>
                     {#snippet child({ props })}
                       <a href={item.url} {...props}>
                         {#if item.icon}
