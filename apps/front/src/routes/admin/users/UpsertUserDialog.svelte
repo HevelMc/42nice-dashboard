@@ -1,7 +1,7 @@
 <script lang="ts">
   import { api } from '$lib/api';
-  import { roles } from '$lib/api/user';
-    import { isEmailValid } from '$lib/utils';
+  import { roles, type User } from '$lib/api/user';
+  import { isEmailValid } from '$lib/utils';
   import { Button, Dialog, Input, Label, Select } from 'hevel-ui';
   import { onMount } from 'svelte';
   import { toast } from 'svelte-sonner';
@@ -14,8 +14,7 @@
 
   let { open = $bindable(false), id, update }: Props = $props();
 
-  let user: { id: number | undefined; login: string; email: string; password: string; role: string | undefined } = $state({
-    id: undefined,
+  let user: Partial<User> & { password?: string } = $state({
     login: '',
     email: '',
     password: '',
@@ -23,12 +22,10 @@
   });
 
   onMount(async () => {
-    console.log(id);
     if (id) await api.get(`/users/${id}`).then((res) => (user = res.data));
   });
 
   async function save() {
-    console.log(user);
     let request = user?.id ? api.patch(`/users/${user.id}`, user) : api.post('/users', user);
     await request.then(() => {
       toast.success('User saved');
@@ -43,19 +40,30 @@
     {user.id ? 'Edit user' : 'Create user'}
   </Dialog.Title>
 
-  <div class="flex flex-col gap-4">
+  <form class="flex flex-col gap-4" onsubmit={save}>
     <div class="flex flex-col gap-2">
-      <Label>Login</Label>
+      <Label>
+        Login
+        <span class="text-red-500">*</span>
+      </Label>
       <Input bind:value={() => user?.login, (value) => (user.login = value)} />
     </div>
 
     <div class="flex flex-col gap-2">
-      <Label>Email</Label>
+      <Label>
+        Email
+        <span class="text-red-500">*</span>
+      </Label>
       <Input bind:value={() => user?.email, (value) => (user.email = value)} />
     </div>
 
     <div class="flex flex-col gap-2">
-      <Label>Password</Label>
+      <Label>
+        Password
+        {#if !user.id}
+          <span class="text-red-500">*</span>
+        {/if}
+      </Label>
       <Input bind:value={() => user?.password, (value) => (user.password = value)} />
       {#if user.id}
         <p class="text-sm text-muted-foreground">Leave blank to keep the same password</p>
@@ -63,7 +71,10 @@
     </div>
 
     <div class="flex flex-col gap-2">
-      <Label>Role</Label>
+      <Label>
+        Role
+        <span class="text-red-500">*</span>
+      </Label>
       <Select.Root type="single" onValueChange={(value) => (user.role = value)} value={user.role}>
         <Select.Trigger>
           {@const role = roles.find((role) => role.value === user.role)}
@@ -87,6 +98,6 @@
       </Select.Root>
     </div>
 
-    <Button onclick={save} disabled={!user.login || !isEmailValid(user.email) || !user.role}>Save</Button>
-  </div>
+    <Button type="submit" disabled={!user.login || !isEmailValid(user.email ?? '') || !user.role}>Save</Button>
+  </form>
 </Dialog.Content>

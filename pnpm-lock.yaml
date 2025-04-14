@@ -116,6 +116,9 @@ importers:
         specifier: 1.0.0-next.13
         version: 1.0.0-next.13(embla-carousel@8.6.0)(postcss@8.5.3)(svelte@5.19.1)(typescript@5.8.3)
     devDependencies:
+      '@internationalized/date':
+        specifier: ^3.8.0
+        version: 3.8.0
       '@sveltejs/adapter-static':
         specifier: ^3.0.4
         version: 3.0.8(@sveltejs/kit@2.20.4)
@@ -1325,8 +1328,8 @@ packages:
     engines: {node: '>=18.18'}
     dev: true
 
-  /@internationalized/date@3.7.0:
-    resolution: {integrity: sha512-VJ5WS3fcVx0bejE/YHfbDKR/yawZgKqn/if+oEeLqNwBtPzVB06olkfcnojTmEMX+gTpH+FlQ69SHNitJ8/erQ==}
+  /@internationalized/date@3.8.0:
+    resolution: {integrity: sha512-J51AJ0fEL68hE4CwGPa6E0PO6JDaVLd8aln48xFCSy7CZkZc96dGEGmLs2OEEbBxcsVZtfrqkXJwI2/MSG8yKw==}
     dependencies:
       '@swc/helpers': 0.5.15
     dev: true
@@ -2652,7 +2655,7 @@ packages:
     dependencies:
       '@floating-ui/core': 1.6.9
       '@floating-ui/dom': 1.6.13
-      '@internationalized/date': 3.7.0
+      '@internationalized/date': 3.8.0
       esm-env: 1.2.2
       runed: 0.22.0(svelte@5.19.1)
       svelte: 5.19.1

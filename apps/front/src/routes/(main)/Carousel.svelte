@@ -1,9 +1,8 @@
 <script lang="ts">
   import { Carousel } from 'hevel-ui';
   import Autoplay from 'embla-carousel-autoplay';
-  import type { Component } from 'svelte';
 
-  let { items }: { items: Component[] } = $props();
+  let { children } = $props();
 
   let api = $state<any>();
 
@@ -20,14 +19,6 @@
   });
 </script>
 
-{#snippet Item(Item: Component)}
-  <Carousel.Item class="h-full w-full p-0">
-    <div class="flex h-full items-center justify-center p-6">
-      <Item />
-    </div>
-  </Carousel.Item>
-{/snippet}
-
 <div class="flex h-full w-full flex-col gap-4 p-4">
   <Carousel.Root
     plugins={[
@@ -39,9 +30,7 @@
     class="h-full w-full [&>*]:h-full"
   >
     <Carousel.Content class="mx-0 h-full w-full">
-      {#each items as item}
-        {@render Item(item)}
-      {/each}
+      {@render children?.()}
     </Carousel.Content>
   </Carousel.Root>
   <div class="flex items-center justify-center gap-2 py-4">

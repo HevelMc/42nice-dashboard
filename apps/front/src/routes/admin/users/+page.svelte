@@ -6,8 +6,8 @@
   import { Pencil, PlusIcon, XCircleIcon } from 'lucide-svelte';
   import UpsertUserDialog from './UpsertUserDialog.svelte';
   import { api } from '$lib/api';
-    import { toast } from 'svelte-sonner';
-    import { auth } from '$lib/auth';
+  import { toast } from 'svelte-sonner';
+  import { auth } from '$lib/auth';
 
   const columns: ColumnDef<User>[] = [
     {
@@ -45,15 +45,19 @@
                 upsertUserDialogOpen = true;
               }
             },
-            ...(row.original.id !==  $auth!.user.id ? [{
-              label: 'Delete',
-              icon: XCircleIcon,
-              class: 'text-red-500 data-[highlighted]:text-red-400',
-              handler: async (row: any) => {
-                deleteDialogUser = row.original;
-                deleteDialogOpen = true;
-              }
-            }] : [])
+            ...(row.original.id !== $auth!.user.id
+              ? [
+                  {
+                    label: 'Delete',
+                    icon: XCircleIcon,
+                    class: 'text-red-500 data-[highlighted]:text-red-400',
+                    handler: async (row: any) => {
+                      deleteDialogUser = row.original;
+                      deleteDialogOpen = true;
+                    }
+                  }
+                ]
+              : [])
           ],
           row
         });
@@ -105,10 +109,14 @@
         <Card.Title>Users</Card.Title>
         <Card.Description>Manage who can access the admin panel, and their roles.</Card.Description>
       </div>
-      <Button size="sm" variant="outline" onclick={() => {
-        upsertUserDialogOpen = true;
-        upsertUserDialogId = undefined;
-      }}>
+      <Button
+        size="sm"
+        variant="outline"
+        onclick={() => {
+          upsertUserDialogOpen = true;
+          upsertUserDialogId = undefined;
+        }}
+      >
         <PlusIcon class="size-4" />
         Add user
       </Button>
@@ -121,6 +129,7 @@
       manualFiltering
       manualPagination
       manualSorting
+      searchPlaceholder="Search by login or email..."
       getData={async (params: any) => await tableQuery.queryTable(params)}
       filters={{
         role: roles

@@ -1,6 +1,6 @@
 import { auth } from '$lib/auth';
 import { get } from 'svelte/store';
-import { House, Icon, LogOut, Users } from 'lucide-svelte';
+import { GalleryThumbnailsIcon, House, Icon, LogOut, Users } from 'lucide-svelte';
 
 const role = get(auth)?.user?.role;
 
@@ -16,6 +16,11 @@ export const contentItems: SidebarItem[] = [
     title: 'Home',
     url: '/admin',
     icon: House
+  },
+  {
+    title: 'Slides',
+    url: '/admin/slides',
+    icon: GalleryThumbnailsIcon
   },
   {
     title: 'Users',
