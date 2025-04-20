@@ -24,11 +24,11 @@
   let date_time: string = $derived(beginDate.toLocaleString('fr-US', { hour: 'numeric', minute: 'numeric' }));
 
   function getColor(type: string) {
-    if (type === 'association') return '#a2b3e5';
-    if (type === 'extern') return '#c0c0c0';
-    if (type === 'challenge') return '#39d88f';
-    if (type === 'exam') return '#ed8179';
-    return '#dddddd';
+    if (type === 'association') return '#22C55F';
+    if (type === 'extern') return '#FAFAFA';
+    if (type === 'challenge') return '#548ff3';
+    if (type === 'exam') return '#f55556';
+    return '#FAFAFA';
   }
 </script>
 
