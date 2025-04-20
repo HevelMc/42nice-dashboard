@@ -10,6 +10,6 @@
   <div class="w-full border-b border-border"></div>
   <h1 class="inline-flex w-full items-center justify-center gap-[6px] text-center text-xl text-foreground">
     <span class="normal-case">Made with ❤️ by</span>
-    <img src="/cohort_logo.png" alt="logo" class="mb-1 h-6 object-cover object-center" />
+    <img src="/cohort_logo.png" alt="logo" class="mb-1 h-6 object-cover object-center invert dark:invert-0" />
   </h1>
 </div>
