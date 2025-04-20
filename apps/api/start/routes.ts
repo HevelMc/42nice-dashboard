@@ -17,6 +17,7 @@ router.group(() => {
   router.get('/intra/coalitions', '#controllers/intra_controller.coalitions')
   router.get('/motd', '#controllers/motd_controller.index')
   router.get('/slides/current', '#controllers/slides_controller.current')
+  router.get('/weather', '#controllers/weather_controller.index')
 })
 
 router.post('/users/login', '#controllers/users_controller.login')
