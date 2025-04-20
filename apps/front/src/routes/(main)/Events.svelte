@@ -38,13 +38,13 @@
 
 {#snippet Column(type: string, events: any[])}
   <div class="flex h-full flex-col items-center">
-    <p class="mb-4 text-[30px] font-black text-foreground">
+    <h1 class="mb-4 text-[30px] font-black text-foreground">
       {#if type === 'event'}
         UPCOMING EVENTS
       {:else}
         UPCOMING EXAMS
       {/if}
-    </p>
+    </h1>
     <div class="bg-dark-background flex h-full w-[500px] flex-col gap-3 rounded-xl p-2">
       {#if events?.length > 0}
         {#each events.slice(0, 5) as event (event.id)}

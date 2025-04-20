@@ -28,10 +28,10 @@
 >
   <img src={'/' + coalition.medal} alt="medal" class="mx-auto my-5 h-auto w-[60px]" />
   <img src={coalition.logo} alt="logo" class="mx-auto h-auto w-[160px]" />
-  <p class="my-2 text-center text-[35px] font-bold uppercase" style="color: {coalition.color}">{coalition.name}</p>
+  <h1 class="my-2 text-center text-[35px] font-bold uppercase" style="color: {coalition.color}">{coalition.name}</h1>
   <div class="mb-8 flex justify-center gap-2">
     <img src="/trophy.svg" alt="trophy" class="h-auto w-[30px]" />
-    <p class="font text-[35px] text-white">{Intl.NumberFormat('fr').format(coalition.score)}</p>
+    <h1 class="font text-[35px] text-white">{Intl.NumberFormat('fr').format(coalition.score)}</h1>
   </div>
   <div class="flex flex-col items-center gap-2">
     <p class="font pb-1 text-xl font-light text-white" style="color: {coalition.color}">TOP SCORER</p>

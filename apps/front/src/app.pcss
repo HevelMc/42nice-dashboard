@@ -87,6 +87,33 @@
   src: url('/fonts/Roboto-Italic.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Arvo';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/fonts/Arvo-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Arvo';
+  font-weight: 400;
+  font-style: italic;
+  src: url('/fonts/Arvo-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Arvo';
+  font-weight: 700;
+  font-style: normal;
+  src: url('/fonts/Arvo-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Arvo';
+  font-weight: 700;
+  font-style: italic;
+  src: url('/fonts/Arvo-BoldItalic.ttf') format('truetype');
+}
 @layer base {
   html,
   body {
@@ -95,6 +122,12 @@
   * {
     font-family: inherit; /* Ensure all elements inherit the font from their parent */
   }
+}
+
+h1 {
+  font-family: 'Arvo', serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 @layer utilities {

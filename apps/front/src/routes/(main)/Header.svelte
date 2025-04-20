@@ -29,9 +29,9 @@
       <span class="text-3xl text-foreground">{motd}</span>
     </Marquee>
   </div>
-  <span class="text-4xl text-foreground">
+  <h1 class="text-4xl text-foreground">
     {new Date().toLocaleTimeString('fr-FR').slice(0, 5)}
-  </span>
+  </h1>
 </nav>
 
 <style>

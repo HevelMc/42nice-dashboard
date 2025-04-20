@@ -42,7 +42,7 @@
 
 <div class="flex flex-col gap-4">
   <div class="flex h-full flex-col items-center gap-8">
-    <p class="text-[45px] font-black text-foreground">COALITIONS</p>
+    <h1 class="text-[45px] font-black text-foreground">COALITIONS</h1>
     <div class="mx-auto grid h-full flex-grow grid-flow-col gap-8">
       {#each coalitions as coalition, index}
         <div class={coalitions.length === 3 && index != 1 ? 'translate-y-10' : ''}>
