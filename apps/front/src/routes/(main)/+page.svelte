@@ -37,28 +37,32 @@
   }}
 />
 
-<div class="flex h-screen flex-col bg-background">
-  <Header />
-  <div class="flex h-full w-full">
-    <Sidebar />
-    {#if !loading}
-      <div class="flex h-full w-full flex-col gap-4">
-        {#key slides.length}
-          <Carousel>
-            {#each slides as slide}
+<div class="relative h-screen">
+  <img src="/background.png" alt="background" class="absolute inset-0 hidden h-full w-full object-cover dark:block" />
+  <div class="absolute inset-0 bg-black opacity-0 dark:opacity-50"></div>
+  <div class="relative z-10 flex h-full flex-col">
+    <Header />
+    <div class="flex h-full w-full">
+      <Sidebar />
+      {#if !loading}
+        <div class="flex h-full w-full flex-col gap-4">
+          {#key slides.length}
+            <Carousel>
+              {#each slides as slide}
+                <CarouselItem>
+                  <SlideComponent {slide} />
+                </CarouselItem>
+              {/each}
               <CarouselItem>
-                <SlideComponent {slide} />
+                <Events />
               </CarouselItem>
-            {/each}
-            <CarouselItem>
-              <Events />
-            </CarouselItem>
-            <CarouselItem>
-              <Coalitions />
-            </CarouselItem>
-          </Carousel>
-        {/key}
-      </div>
-    {/if}
+              <CarouselItem>
+                <Coalitions />
+              </CarouselItem>
+            </Carousel>
+          {/key}
+        </div>
+      {/if}
+    </div>
   </div>
 </div>
