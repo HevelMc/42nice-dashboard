@@ -13,11 +13,13 @@
 
   let slides: Slide[] = $state([]);
   let loading = $state(true);
+  let showBarbate = $state(false);
 
   onMount(() => {
     fetchSlides();
     let interval = setInterval(async () => {
       await fetchSlides();
+      showBarbate = Math.random() < 0.05;
     }, 10000);
 
     return () => clearInterval(interval);
@@ -40,6 +42,15 @@
 <div class="relative h-screen">
   <img src="/background.png" alt="background" class="absolute inset-0 hidden h-full w-full object-cover dark:block" />
   <div class="absolute inset-0 bg-black opacity-0 dark:opacity-50"></div>
+
+  <img
+    src="barbate-wave.gif"
+    class="absolute bottom-0 right-0 z-30 h-48 transition-all duration-1000 {showBarbate
+      ? 'translate-y-0'
+      : 'translate-y-[400px]'}"
+    alt="barbate waving"
+  />
+
   <div class="relative z-10 flex h-full flex-col">
     <Header />
     <div class="flex h-full w-full">
