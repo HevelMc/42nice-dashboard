@@ -20,7 +20,7 @@
       );
 
       return () => clearInterval(interval);
-    }, 2000);
+    }, 3000);
   });
 
   async function fetchEvents() {
