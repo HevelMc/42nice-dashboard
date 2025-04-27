@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@adonisjs/transmit-client": "^1.0.0",
-    "hevel-ui": "1.0.0-next.13"
+    "hevel-ui": "1.0.0-next.14"
   },
   "devDependencies": {
     "@internationalized/date": "^3.8.0",
