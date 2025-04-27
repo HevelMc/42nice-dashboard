@@ -73,7 +73,7 @@ export class IntraService {
       }
     }
 
-    await cache.set({ key: 'clusters', value: clusterCounts, ttl: 5 * 60 })
+    await cache.set({ key: 'clusters', value: clusterCounts, ttl: '5m' })
     return clusterCounts
   }
 
@@ -128,7 +128,7 @@ export class IntraService {
       }
     })
 
-    await cache.set({ key: 'events', value: events, ttl: 5 * 60 })
+    await cache.set({ key: 'events', value: events, ttl: '5m' })
     return events
   }
 
@@ -194,7 +194,7 @@ export class IntraService {
       }
     })
 
-    await cache.set({ key: 'coalitions', value: result, ttl: 5 * 60 })
+    await cache.set({ key: 'coalitions', value: result, ttl: '5m' })
     return result
   }
 }
